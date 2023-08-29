@@ -27,23 +27,23 @@ public class AdministratorController {
 
     //Просмотр администратора
     @GetMapping("/{id}")
-    public ResponseEntity<Administrator> read(@PathVariable long id) {
+    public ResponseEntity<Administrator> readAdministrator(@PathVariable long id) {
         Administrator administrator = administratorService.read(id);
         return administrator != null
                 ? new ResponseEntity<>(administrator, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    //Добавить читателя
+    //Добавить администратора
     @PostMapping("/")
-    public ResponseEntity<Administrator> create(@RequestBody Administrator administrator) {
+    public ResponseEntity<Administrator> createAdministrator(@RequestBody Administrator administrator) {
         administratorService.create(administrator);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     //Изменить информацию об администраторе
     @PutMapping("/{id}")
-    public ResponseEntity<Administrator> update(@PathVariable long id, @RequestBody Administrator administrator) {
+    public ResponseEntity<Administrator> updateAdministrator(@PathVariable long id, @RequestBody Administrator administrator) {
         boolean updated = administratorService.update(administrator, id);
 
         return updated
@@ -53,7 +53,7 @@ public class AdministratorController {
 
     //Удалить администратора
     @DeleteMapping("/{id}")
-    public ResponseEntity<Administrator> deleteBook(@PathVariable long id) {
+    public ResponseEntity<Administrator> deleteAdministrator(@PathVariable long id) {
         boolean deleted = administratorService.delete(id);
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)

@@ -27,7 +27,7 @@ public class PersonController {
 
     //Просмотр читателя
     @GetMapping("/{id}")
-    public ResponseEntity<Person> read(@PathVariable long id) {
+    public ResponseEntity<Person> readPerson(@PathVariable long id) {
         Person person = personService.read(id);
         return person != null
                 ? new ResponseEntity<>(person, HttpStatus.OK)
@@ -36,14 +36,14 @@ public class PersonController {
 
     //Добавить читателя
     @PostMapping("/")
-    public ResponseEntity<Person> create(@RequestBody Person person) {
+    public ResponseEntity<Person> createPerson(@RequestBody Person person) {
         personService.create(person);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //Изменить информацию о книге
+    //Изменить информацию о читателе
     @PutMapping("/{id}")
-    public ResponseEntity<Person> update(@PathVariable long id, @RequestBody Person person) {
+    public ResponseEntity<Person> updatePerson(@PathVariable long id, @RequestBody Person person) {
         boolean updated = personService.update(person, id);
 
         return updated
@@ -51,9 +51,9 @@ public class PersonController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    //Удалить книгу
+    //Удалить читателя
     @DeleteMapping("/{id}")
-    public ResponseEntity<Person> deleteBook(@PathVariable long id) {
+    public ResponseEntity<Person> deletePerson(@PathVariable long id) {
         boolean deleted = personService.delete(id);
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)

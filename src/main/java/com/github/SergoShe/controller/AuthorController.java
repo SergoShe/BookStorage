@@ -27,7 +27,7 @@ public class AuthorController {
 
     //Просмотр автора
     @GetMapping("/{id}")
-    public ResponseEntity<Author> read(@PathVariable long id) {
+    public ResponseEntity<Author> readAuthor(@PathVariable long id) {
         Author author = authorService.read(id);
         return author != null
                 ? new ResponseEntity<>(author, HttpStatus.OK)
@@ -36,14 +36,14 @@ public class AuthorController {
 
     //Добавить автора
     @PostMapping("/")
-    public ResponseEntity<Author> create(@RequestBody Author author) {
+    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
         authorService.create(author);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     //Изменить информацию об авторе
     @PutMapping("/{id}")
-    public ResponseEntity<Author> update(@PathVariable long id, @RequestBody Author author) {
+    public ResponseEntity<Author> updateAuthor(@PathVariable long id, @RequestBody Author author) {
         boolean updated = authorService.update(author, id);
 
         return updated
@@ -53,7 +53,7 @@ public class AuthorController {
 
     //Удалить автора
     @DeleteMapping("/{id}")
-    public ResponseEntity<Author> deleteBook(@PathVariable long id) {
+    public ResponseEntity<Author> deleteAuthor(@PathVariable long id) {
         boolean deleted = authorService.delete(id);
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)

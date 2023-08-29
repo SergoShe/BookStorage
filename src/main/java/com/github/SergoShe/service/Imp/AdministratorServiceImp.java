@@ -2,12 +2,14 @@ package com.github.SergoShe.service.Imp;
 
 import com.github.SergoShe.model.Administrator;
 import com.github.SergoShe.service.AdministratorService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Service
 public class AdministratorServiceImp implements AdministratorService {
     public static final HashMap<Long,Administrator> ADMINISTRATOR_HASH_MAP = new HashMap<>();
 

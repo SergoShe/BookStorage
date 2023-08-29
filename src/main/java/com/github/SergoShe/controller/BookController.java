@@ -16,11 +16,6 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    @GetMapping("/some")
-    public String printSome(){
-        return "Some";
-    }
-
     //Просмотр всех книг
     @GetMapping("/all")
     public ResponseEntity<List<Book>> readAll() {
@@ -56,16 +51,12 @@ public class BookController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-/*
-
     //Отправить книгу в обслуживание
-    @GetMapping(path = "/{id}",params = "status")
-    public String transferToService(@PathVariable long id, @RequestParam String status) {
+    @PatchMapping("/{id}")
+    public String transferToService(@PathVariable long id) {
 
-        return "Книга "+id+" имеет статус " + status;
+        return "Книга " + bookService.read(id).getTitle() + " отправлена на обслуживание";
     }
-*/
-
 
     //Удалить книгу
     @DeleteMapping("/{id}")

@@ -1,7 +1,5 @@
 package com.github.SergoShe.model;
 
-import java.util.ArrayList;
-
 public class Person {
 
     private long id;
@@ -9,7 +7,24 @@ public class Person {
     private String surname;
     private String phoneNumber;
     private String address;
-    private ArrayList<Book> books;
+    private String createDate;
+    private String updateDate;
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
 
     public long getId() {
         return id;
@@ -49,13 +64,5 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public ArrayList<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(ArrayList<Book> books) {
-        this.books = books;
     }
 }

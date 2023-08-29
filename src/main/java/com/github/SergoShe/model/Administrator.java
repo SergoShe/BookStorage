@@ -5,6 +5,24 @@ public class Administrator {
     private long id;
     private String name;
     private String surname;
+    private String createDate;
+    private String updateDate;
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
 
     public long getId() {
         return id;

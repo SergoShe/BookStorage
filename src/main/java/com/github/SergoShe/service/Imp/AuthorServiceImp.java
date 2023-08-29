@@ -2,12 +2,14 @@ package com.github.SergoShe.service.Imp;
 
 import com.github.SergoShe.model.Author;
 import com.github.SergoShe.service.AuthorService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Service
 public class AuthorServiceImp implements AuthorService {
     public static final HashMap<Long,Author> AUTHOR_HASH_MAP = new HashMap<>();
 

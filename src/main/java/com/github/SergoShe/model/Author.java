@@ -1,13 +1,12 @@
 package com.github.SergoShe.model;
 
-import java.util.ArrayList;
-
 public class Author {
     private long id;
     private String name;
     private String surname;
     private String middleName;
-    private ArrayList<Book> books;
+    private String createDate;
+    private String updateDate;
 
     public long getId() {
         return id;
@@ -41,11 +40,19 @@ public class Author {
         this.middleName = middleName;
     }
 
-    public ArrayList<Book> getBooks() {
-        return books;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setBooks(ArrayList<Book> books) {
-        this.books = books;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 }

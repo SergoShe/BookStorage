@@ -1,6 +1,7 @@
 package com.github.SergoShe.model;
 
-import java.util.ArrayList;
+import com.github.SergoShe.model.enums.BindingType;
+import com.github.SergoShe.model.enums.Status;
 
 public class Book {
 
@@ -9,11 +10,10 @@ public class Book {
     private int year;
     private boolean isDamaged;
     private String serviceDate;
-    private String status;
-    private String binding;
-    private ArrayList<Author> authors;
-    private Administrator administrator;
-    private Person person;
+    private Status status;
+    private BindingType binding;
+    private String createDate;
+    private String updateDate;
 
     public long getId() {
         return id;
@@ -55,43 +55,35 @@ public class Book {
         this.serviceDate = serviceDate;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public String getBinding() {
+    public BindingType getBinding() {
         return binding;
     }
 
-    public void setBinding(String binding) {
+    public void setBinding(BindingType binding) {
         this.binding = binding;
     }
 
-    public ArrayList<Author> getAuthors() {
-        return authors;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setAuthors(ArrayList<Author> authors) {
-        this.authors = authors;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
-    public Administrator getAdministrator() {
-        return administrator;
+    public String getUpdateDate() {
+        return updateDate;
     }
 
-    public void setAdministrator(Administrator administrator) {
-        this.administrator = administrator;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 }
