@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Status {
+    UNKNOWN(0),
     AVAILABLE(1),
     ISSUED(2),
     REQUIRES_SERVICE(3),

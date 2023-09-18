@@ -2,25 +2,40 @@ package com.github.SergoShe.model;
 
 import com.github.SergoShe.model.enums.BindingType;
 import com.github.SergoShe.model.enums.Status;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "book")
 public class Book {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
+    private long bookId;
+    @Column(name = "title_name")
     private String title;
     private int year;
+    @Column(name = "is_damaged")
     private boolean isDamaged;
-    private String serviceDate;
+    @Column(name="service_date")
+    private LocalDate serviceDate;
+    @Column(name = "status_id")
     private Status status;
+    @Column(name = "binding_id")
     private BindingType binding;
-    private String createDate;
-    private String updateDate;
+    @Column(name="create_date")
+    private LocalDate createDate;
+    @Column(name="update_date")
+    private LocalDate updateDate;
 
-    public long getId() {
-        return id;
+    public long getBookId() {
+        return bookId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 
     public String getTitle() {
@@ -47,11 +62,11 @@ public class Book {
         isDamaged = damaged;
     }
 
-    public String getServiceDate() {
+    public LocalDate getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(String serviceDate) {
+    public void setServiceDate(LocalDate serviceDate) {
         this.serviceDate = serviceDate;
     }
 
@@ -71,19 +86,19 @@ public class Book {
         this.binding = binding;
     }
 
-    public String getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 
-    public String getUpdateDate() {
+    public LocalDate getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
     }
 }
