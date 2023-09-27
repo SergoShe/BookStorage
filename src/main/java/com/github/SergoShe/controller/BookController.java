@@ -21,7 +21,7 @@ public class BookController {
     //Просмотр всех книг
     @GetMapping("/all")
     public ResponseEntity<List<Book>> readAll() {
-        List<Book> books = bookService.getAllBook();
+        List<Book> books = bookService.getAll();
         return books != null && !books.isEmpty()
                 ? new ResponseEntity<>(books, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -30,7 +30,7 @@ public class BookController {
     //Просмотр книги
     @GetMapping("/{id}")
     public ResponseEntity<Book> read(@PathVariable long id) {
-        Book book = bookService.getBook(id);
+        Book book = bookService.get(id);
         return book != null
                 ? new ResponseEntity<>(book, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,14 +39,14 @@ public class BookController {
     //Добавить книгу
     @PostMapping("/")
     public ResponseEntity<Book> create(@RequestBody Book book) {
-        Book newBook = bookService.createBook(book);
+        Book newBook = bookService.create(book);
         return new ResponseEntity<>(newBook,HttpStatus.CREATED);
     }
 
     //Изменить информацию о книге
     @PutMapping("/{id}")
-    public ResponseEntity<Book> update(@PathVariable long id, @RequestBody Book book) {
-        Book updatedBook = bookService.updateBook(id, book);
+    public ResponseEntity<Book> update(@RequestBody Book book) {
+        Book updatedBook = bookService.update(book);
         return new ResponseEntity<>(updatedBook,HttpStatus.OK);
 
     }
@@ -60,6 +60,6 @@ public class BookController {
     //Удалить книгу
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        bookService.deleteBook(id);
+        bookService.delete(id);
     }
 }

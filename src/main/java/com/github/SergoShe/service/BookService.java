@@ -6,16 +6,15 @@ import java.util.List;
 
 public interface BookService {
 
-    Book createBook(Book book);
+    Book create(Book book);
 
-    List<Book> getAllBook();
+    List<Book> getAll();
 
-    Book getBook(long bookId);
+    Book get(long bookId);
 
-    Book updateBook(long bookId, Book book);
-
+    Book update(Book updatedBook);
     void sendBookToService(long bookId);
 
-    void deleteBook(long bookId);
+    void delete(long bookId);
 
 }

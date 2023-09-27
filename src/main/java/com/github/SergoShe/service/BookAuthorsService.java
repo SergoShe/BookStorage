@@ -6,9 +6,9 @@ public interface BookAuthorsService {
 
     void create (Long authorId, Long bookId);
 
-    List<Long> getBooksId(long authorId);
+    List<Long> getBookListByAuthorId(long authorId);
 
-    List<Long> getAuthorsId(long bookId);
+    List<Long> getAuthorListByBookId(long bookId);
 
     boolean deleteAuthor(long authorId);
 

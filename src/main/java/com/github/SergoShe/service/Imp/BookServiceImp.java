@@ -23,25 +23,25 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
-    public Book createBook(Book book) {
+    public Book create(Book book) {
         book.setCreateDate(LocalDate.now());
         book.setUpdateDate(LocalDate.now());
         return bookRepository.saveAndFlush(book);
     }
 
     @Override
-    public List<Book> getAllBook() {
+    public List<Book> getAll() {
         return bookRepository.findAll();
     }
 
     @Override
-    public Book getBook(long bookId) {
+    public Book get(long bookId) {
         return bookRepository.findById(bookId).get();
     }
 
     @Override
-    public Book updateBook(long bookId, Book updatedBook) {
-        return bookRepository.findById(bookId)
+    public Book update(Book updatedBook) {
+        return bookRepository.findById(updatedBook.getBookId())
                 .map(book -> {
                     book.setTitle(updatedBook.getTitle());
                     book.setYear(updatedBook.getYear());
@@ -53,7 +53,7 @@ public class BookServiceImp implements BookService {
                     book.setUpdateDate(LocalDate.now());
                     return bookRepository.saveAndFlush(book);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("Book not found with id " + bookId));
+                .orElseThrow(() -> new EntityNotFoundException("Book not found with id " + updatedBook.getBookId()));
     }
 
     @Override
@@ -62,7 +62,7 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
-    public void deleteBook(long bookId) {
+    public void delete(long bookId) {
         bookRepository.deleteById(bookId);
     }
 }

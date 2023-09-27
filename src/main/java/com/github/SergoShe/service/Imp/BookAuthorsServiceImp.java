@@ -22,13 +22,13 @@ public class BookAuthorsServiceImp implements BookAuthorsService {
     }
 
     @Override
-    public List<Long> getBooksId(long authorId) {
+    public List<Long> getBookListByAuthorId(long authorId) {
         return RELATION_HASH_MAP.values().stream()
                 .filter(x -> x.getAuthorId() == authorId).map(AuthorBookRelation::getBookId).toList();
     }
 
     @Override
-    public List<Long> getAuthorsId(long bookId) {
+    public List<Long> getAuthorListByBookId(long bookId) {
         return RELATION_HASH_MAP.values().stream()
                 .filter(x -> x.getBookId() == bookId).map(AuthorBookRelation::getAuthorId).toList();
     }
