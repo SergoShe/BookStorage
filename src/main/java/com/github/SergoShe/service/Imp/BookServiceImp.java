@@ -1,6 +1,7 @@
 package com.github.SergoShe.service.Imp;
 
 import com.github.SergoShe.model.Book;
+import com.github.SergoShe.model.enums.Status;
 import com.github.SergoShe.repository.BookRepository;
 import com.github.SergoShe.service.BookService;
 import jakarta.persistence.EntityNotFoundException;
@@ -49,8 +50,7 @@ public class BookServiceImp implements BookService {
                     book.setStatus(updatedBook.getStatus());
                     book.setDamaged(updatedBook.isDamaged());
                     book.setServiceDate(updatedBook.getServiceDate());
-                    book.setCreateDate(updatedBook.getCreateDate());
-                    book.setUpdateDate(LocalDate.now());
+                    //book.setUpdateDate(LocalDate.now());
                     return bookRepository.saveAndFlush(book);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with id " + updatedBook.getBookId()));
@@ -58,7 +58,18 @@ public class BookServiceImp implements BookService {
 
     @Override
     public void sendBookToService(long bookId) {
-        bookRepository.setServiceStatus(bookId);
+        bookRepository.findById(bookId).map(book -> {
+            switch (book.getStatus()){
+                case ISSUED,IN_THE_READING_ROOM -> {
+                    book.setStatus(Status.REQUIRES_SERVICE);
+                }
+                case AVAILABLE -> {
+                    book.setStatus(Status.AWAITING_SERVICE);
+                }
+            }
+            book.setUpdateDate(LocalDate.now());
+            return bookRepository.saveAndFlush(book);
+        });
     }
 
     @Override

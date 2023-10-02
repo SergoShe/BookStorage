@@ -48,7 +48,6 @@ public class BookController {
     public ResponseEntity<Book> update(@RequestBody Book book) {
         Book updatedBook = bookService.update(book);
         return new ResponseEntity<>(updatedBook,HttpStatus.OK);
-
     }
 
     //Отправить книгу в обслуживание
