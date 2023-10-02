@@ -19,7 +19,7 @@ public class AdministratorController {
     //Просмотр всех администраторов
     @GetMapping("/all")
     public ResponseEntity<List<Administrator>> readAll() {
-        List<Administrator> administrators = administratorService.readAll();
+        List<Administrator> administrators = administratorService.getAll();
         return administrators != null && !administrators.isEmpty()
                 ? new ResponseEntity<>(administrators, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -28,7 +28,7 @@ public class AdministratorController {
     //Просмотр администратора
     @GetMapping("/{id}")
     public ResponseEntity<Administrator> readAdministrator(@PathVariable long id) {
-        Administrator administrator = administratorService.read(id);
+        Administrator administrator = administratorService.get(id);
         return administrator != null
                 ? new ResponseEntity<>(administrator, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -43,8 +43,8 @@ public class AdministratorController {
 
     //Изменить информацию об администраторе
     @PutMapping("/{id}")
-    public ResponseEntity<Administrator> updateAdministrator(@PathVariable long id, @RequestBody Administrator administrator) {
-        boolean updated = administratorService.update(administrator, id);
+    public ResponseEntity<Administrator> updateAdministrator(@RequestBody Administrator administrator) {
+        boolean updated = administratorService.update(administrator);
 
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)

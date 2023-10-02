@@ -8,11 +8,11 @@ public interface AdministratorService {
 
     void create(Administrator administrator);
 
-    List<Administrator> readAll();
+    List<Administrator> getAll();
 
-    Administrator read(long id);
+    Administrator get(long id);
 
-    boolean update(Administrator administrator, long id);
+    boolean update(Administrator administrator);
 
     boolean delete(long id);
 }
