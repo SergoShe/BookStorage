@@ -50,7 +50,7 @@ public class BookServiceImp implements BookService {
                     book.setStatus(updatedBook.getStatus());
                     book.setDamaged(updatedBook.isDamaged());
                     book.setServiceDate(updatedBook.getServiceDate());
-                    //book.setUpdateDate(LocalDate.now());
+                    book.setUpdateDate(LocalDate.now());
                     return bookRepository.saveAndFlush(book);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with id " + updatedBook.getBookId()));

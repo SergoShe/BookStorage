@@ -16,6 +16,7 @@ public class Book {
     private long bookId;
     @Column(name = "title_name")
     private String title;
+    @Column(name = "year")
     private int year;
     @Column(name = "is_damaged")
     private boolean isDamaged;
