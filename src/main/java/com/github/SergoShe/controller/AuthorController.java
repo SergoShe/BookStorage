@@ -18,8 +18,8 @@ public class AuthorController {
 
     //Просмотр всех авторов
     @GetMapping("/all")
-    public ResponseEntity<List<Author>> readAll() {
-        List<Author> authors = authorService.readAll();
+    public ResponseEntity<List<Author>> readAllAuthors() {
+        List<Author> authors = authorService.getAll();
         return authors != null && !authors.isEmpty()
                 ? new ResponseEntity<>(authors, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -28,7 +28,7 @@ public class AuthorController {
     //Просмотр автора
     @GetMapping("/{id}")
     public ResponseEntity<Author> readAuthor(@PathVariable long id) {
-        Author author = authorService.read(id);
+        Author author = authorService.get(id);
         return author != null
                 ? new ResponseEntity<>(author, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -42,21 +42,15 @@ public class AuthorController {
     }
 
     //Изменить информацию об авторе
-    @PutMapping("/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable long id, @RequestBody Author author) {
-        boolean updated = authorService.update(author, id);
-
-        return updated
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    @PutMapping("/")
+    public String updateAuthor(@RequestBody Author author) {
+        long updatedAuthor_id = authorService.update(author);
+        return "Author " + updatedAuthor_id + " is updated";
     }
 
     //Удалить автора
     @DeleteMapping("/{id}")
-    public ResponseEntity<Author> deleteAuthor(@PathVariable long id) {
-        boolean deleted = authorService.delete(id);
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    public void deleteAuthor(@PathVariable long id) {
+        authorService.delete(id);
     }
 }

@@ -8,11 +8,11 @@ public interface AuthorService {
 
     void create(Author author);
 
-    List<Author> readAll();
+    List<Author> getAll();
 
-    Author read(long id);
+    Author get(long authorId);
 
-    boolean update(Author author, long id);
+    long update(Author author);
 
-    boolean delete(long id);
+    void delete(long authorId);
 }
