@@ -1,35 +1,21 @@
 package com.github.SergoShe.model;
 
+import java.time.LocalDate;
+
 public class Administrator {
 
-    private long id;
+    private long administratorId;
     private String name;
     private String surname;
-    private String createDate;
-    private String updateDate;
+    private LocalDate createDate;
+    private LocalDate updateDate;
 
-    public String getCreateDate() {
-        return createDate;
+    public long getAdministratorId() {
+        return administratorId;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setAdministratorId(long administratorId) {
+        this.administratorId = administratorId;
     }
 
     public String getName() {
@@ -46,5 +32,21 @@ public class Administrator {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDate getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDate updateDate) {
+        this.updateDate = updateDate;
     }
 }

@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface AdministratorService {
 
-    void create(Administrator administrator);
+    void createAdministrator(Administrator administrator);
 
-    List<Administrator> getAll();
+    List<Administrator> getAllAdministrators();
 
-    Administrator get(long id);
+    Administrator getAdministrator(long id);
 
-    boolean update(Administrator administrator);
+    Administrator updateAdministrator(Administrator administrator);
 
-    boolean delete(long id);
+    boolean deleteAdministrator(long id);
 }

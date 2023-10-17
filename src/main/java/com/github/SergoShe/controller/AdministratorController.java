@@ -14,12 +14,12 @@ import java.util.List;
 public class AdministratorController {
 
     @Autowired
-    AdministratorService administratorService;
+    AdministratorService adminService;
 
     //Просмотр всех администраторов
     @GetMapping("/all")
     public ResponseEntity<List<Administrator>> readAll() {
-        List<Administrator> administrators = administratorService.getAll();
+        List<Administrator> administrators = adminService.getAllAdministrators();
         return administrators != null && !administrators.isEmpty()
                 ? new ResponseEntity<>(administrators, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -27,8 +27,8 @@ public class AdministratorController {
 
     //Просмотр администратора
     @GetMapping("/{id}")
-    public ResponseEntity<Administrator> readAdministrator(@PathVariable long id) {
-        Administrator administrator = administratorService.get(id);
+    public ResponseEntity<Administrator> readAdministrator(@PathVariable long adminId) {
+        Administrator administrator = adminService.getAdministrator(adminId);
         return administrator != null
                 ? new ResponseEntity<>(administrator, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -37,24 +37,24 @@ public class AdministratorController {
     //Добавить администратора
     @PostMapping("/")
     public ResponseEntity<Administrator> createAdministrator(@RequestBody Administrator administrator) {
-        administratorService.create(administrator);
+        adminService.createAdministrator(administrator);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     //Изменить информацию об администраторе
-    @PutMapping("/{id}")
+    @PutMapping("/")
     public ResponseEntity<Administrator> updateAdministrator(@RequestBody Administrator administrator) {
-        boolean updated = administratorService.update(administrator);
+        Administrator updatedAdmin = adminService.updateAdministrator(administrator);
 
-        return updated
-                ? new ResponseEntity<>(HttpStatus.OK)
+        return updatedAdmin != null
+                ? new ResponseEntity<>(updatedAdmin, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     //Удалить администратора
     @DeleteMapping("/{id}")
-    public ResponseEntity<Administrator> deleteAdministrator(@PathVariable long id) {
-        boolean deleted = administratorService.delete(id);
+    public ResponseEntity<Administrator> deleteAdministrator(@PathVariable long adminId) {
+        boolean deleted = adminService.deleteAdministrator(adminId);
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);

@@ -5,52 +5,40 @@ import com.github.SergoShe.repository.AdministratorRepository;
 import com.github.SergoShe.service.AdministratorService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class AdministratorServiceImp implements AdministratorService {
 
-    private final AdministratorRepository administratorRepository;
-    public static final HashMap<Long,Administrator> ADMINISTRATOR_HASH_MAP = new HashMap<>();
+    private final AdministratorRepository adminRepository;
 
-    public static final AtomicLong ADMINISTRATOR_ID_HOLDER = new AtomicLong();
-
-    public AdministratorServiceImp(AdministratorRepository administratorRepository) {
-        this.administratorRepository = administratorRepository;
+    public AdministratorServiceImp(AdministratorRepository adminRepository) {
+        this.adminRepository = adminRepository;
     }
 
     @Override
-    public void create(Administrator administrator) {
-        long administratorId = ADMINISTRATOR_ID_HOLDER.incrementAndGet();
-        administrator.setId(administratorId);
-        ADMINISTRATOR_HASH_MAP.put(administratorId,administrator);
+    public void createAdministrator(Administrator administrator) {
+        adminRepository.createAdministrator(administrator);
     }
 
     @Override
-    public List<Administrator> getAll() {
-        return administratorRepository.findAllAdministrators();
+    public List<Administrator> getAllAdministrators() {
+        return adminRepository.findAllAdministrators();
     }
 
     @Override
-    public Administrator get(long id) {
-        return ADMINISTRATOR_HASH_MAP.get(id);
+    public Administrator getAdministrator(long administratorId) {
+        return adminRepository.findAdministratorById(administratorId);
     }
 
     @Override
-    public boolean update(Administrator administrator) {
-        if (ADMINISTRATOR_HASH_MAP.containsKey(id)){
-            administrator.setId(id);
-            ADMINISTRATOR_HASH_MAP.put(id,administrator);
-            return true;
-        }
-        return false;
+    public Administrator updateAdministrator(Administrator administrator) {
+        return adminRepository.updateAdministrator(administrator);
     }
 
     @Override
-    public boolean delete(long id) {
-        return ADMINISTRATOR_HASH_MAP.remove(id) != null;
+    public boolean deleteAdministrator(long administratorId) {
+        long deletedId = adminRepository.deleteAdministratorById(administratorId);
+        return administratorId == deletedId;
     }
 }
