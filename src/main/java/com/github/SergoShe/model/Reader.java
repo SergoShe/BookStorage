@@ -1,37 +1,23 @@
 package com.github.SergoShe.model;
 
-public class Person {
+import java.time.LocalDate;
 
-    private long id;
+public class Reader {
+
+    private long readerId;
     private String name;
     private String surname;
     private String phoneNumber;
     private String address;
-    private String createDate;
-    private String updateDate;
+    private LocalDate createDate;
+    private LocalDate updateDate;
 
-    public String getCreateDate() {
-        return createDate;
+    public long getReaderId() {
+        return readerId;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setReaderId(long readerId) {
+        this.readerId = readerId;
     }
 
     public String getName() {
@@ -64,5 +50,21 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDate getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDate updateDate) {
+        this.updateDate = updateDate;
     }
 }
