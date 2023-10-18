@@ -19,27 +19,28 @@ public class AuthorServiceImp implements AuthorService {
     }
 
     @Override
-    public void create(Author author) {
+    public void createAuthor(Author author) {
         authorRepository.createAuthor(author);
     }
 
     @Override
-    public List<Author> getAll() {
+    public List<Author> getAllAuthors() {
         return authorRepository.findAllAuthors();
     }
 
     @Override
-    public Author get(long authorId) {
+    public Author getAuthor(long authorId) {
         return authorRepository.findAuthorById(authorId);
     }
 
     @Override
-    public long update(Author updatedAuthor) {
-            return authorRepository.updateAuthor(updatedAuthor);
+    public Author updateAuthor(Author updatedAuthor) {
+        return authorRepository.updateAuthor(updatedAuthor);
     }
 
     @Override
-    public void delete(long authorId) {
-        authorRepository.deleteById(authorId);
+    public boolean deleteAuthor(long authorId) {
+        long deletedId = authorRepository.deleteAuthorById(authorId);
+        return authorId == deletedId;
     }
 }

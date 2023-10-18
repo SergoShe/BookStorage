@@ -19,7 +19,7 @@ public class AuthorController {
     //Просмотр всех авторов
     @GetMapping("/all")
     public ResponseEntity<List<Author>> readAllAuthors() {
-        List<Author> authors = authorService.getAll();
+        List<Author> authors = authorService.getAllAuthors();
         return authors != null && !authors.isEmpty()
                 ? new ResponseEntity<>(authors, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -27,8 +27,8 @@ public class AuthorController {
 
     //Просмотр автора
     @GetMapping("/{id}")
-    public ResponseEntity<Author> readAuthor(@PathVariable long id) {
-        Author author = authorService.get(id);
+    public ResponseEntity<Author> readAuthor(@PathVariable long authorId) {
+        Author author = authorService.getAuthor(authorId);
         return author != null
                 ? new ResponseEntity<>(author, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -37,20 +37,25 @@ public class AuthorController {
     //Добавить автора
     @PostMapping("/")
     public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
-        authorService.create(author);
+        authorService.createAuthor(author);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     //Изменить информацию об авторе
     @PutMapping("/")
-    public String updateAuthor(@RequestBody Author author) {
-        long updatedAuthor_id = authorService.update(author);
-        return "Author " + updatedAuthor_id + " is updated";
+    public ResponseEntity<Author> updateAuthor(@RequestBody Author author) {
+        Author updatedAuthor = authorService.updateAuthor(author);
+        return updatedAuthor != null
+                ? new ResponseEntity<>(updatedAuthor, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     //Удалить автора
     @DeleteMapping("/{id}")
-    public void deleteAuthor(@PathVariable long id) {
-        authorService.delete(id);
+    public ResponseEntity<Author> deleteAuthor(@PathVariable long authorId) {
+        boolean deleted = authorService.deleteAuthor(authorId);
+        return deleted
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }

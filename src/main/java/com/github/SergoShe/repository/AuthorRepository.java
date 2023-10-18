@@ -27,36 +27,38 @@ public class AuthorRepository {
         return jdbc.query(sql, new AuthorRowMapper());
     }
 
-    public void deleteById(Long authorId) {
+    public long deleteAuthorById(Long authorId) {
         String sql = "DELETE FROM author WHERE author_id = ?";
-        jdbc.update(sql, authorId);
+        return jdbc.update(sql, authorId);
     }
 
-    public void createAuthor(Author author) {
+    public Author createAuthor(Author author) {
         String sql = """
-        INSERT INTO author (author_id,first_name,surname,middle_name,create_date,update_date)
-        VALUES (?,?,?,?,?,?);
-        """;
-        jdbc.update(sql,
+                INSERT INTO author (author_id,first_name,surname,middle_name,create_date,update_date)
+                VALUES (?,?,?,?,?,?);
+                """;
+        long authorId = jdbc.update(sql,
                 author.getAuthorId(),
                 author.getFirstName(),
                 author.getSurName(),
                 author.getMiddleName(),
                 LocalDate.now(),
                 LocalDate.now());
+        return findAuthorById(authorId);
     }
 
-    public long updateAuthor(Author author){
+    public Author updateAuthor(Author author) {
         String sql = """
                 UPDATE author
                 SET first_name = ?, surname = ?, middle_name = ?, update_date = ?
                 WHERE author_id = ?;
                 """;
-        return jdbc.update(sql,
+        long authorId = jdbc.update(sql,
                 author.getFirstName(),
                 author.getSurName(),
                 author.getMiddleName(),
                 LocalDate.now(),
                 author.getAuthorId());
+        return findAuthorById(authorId);
     }
 }
