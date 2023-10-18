@@ -1,48 +1,44 @@
 package com.github.SergoShe.service.Imp;
 
 import com.github.SergoShe.model.Administrator;
+import com.github.SergoShe.repository.AdministratorRepository;
 import com.github.SergoShe.service.AdministratorService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class AdministratorServiceImp implements AdministratorService {
-    public static final HashMap<Long,Administrator> ADMINISTRATOR_HASH_MAP = new HashMap<>();
 
-    public static final AtomicLong ADMINISTRATOR_ID_HOLDER = new AtomicLong();
-    @Override
-    public void create(Administrator administrator) {
-        long administratorId = ADMINISTRATOR_ID_HOLDER.incrementAndGet();
-        administrator.setId(administratorId);
-        ADMINISTRATOR_HASH_MAP.put(administratorId,administrator);
+    private final AdministratorRepository adminRepository;
+
+    public AdministratorServiceImp(AdministratorRepository adminRepository) {
+        this.adminRepository = adminRepository;
     }
 
     @Override
-    public List<Administrator> readAll() {
-        return new ArrayList<>(ADMINISTRATOR_HASH_MAP.values());
+    public void createAdministrator(Administrator administrator) {
+        adminRepository.createAdministrator(administrator);
     }
 
     @Override
-    public Administrator read(long id) {
-        return ADMINISTRATOR_HASH_MAP.get(id);
+    public List<Administrator> getAllAdministrators() {
+        return adminRepository.findAllAdministrators();
     }
 
     @Override
-    public boolean update(Administrator administrator, long id) {
-        if (ADMINISTRATOR_HASH_MAP.containsKey(id)){
-            administrator.setId(id);
-            ADMINISTRATOR_HASH_MAP.put(id,administrator);
-            return true;
-        }
-        return false;
+    public Administrator getAdministrator(long administratorId) {
+        return adminRepository.findAdministratorById(administratorId);
     }
 
     @Override
-    public boolean delete(long id) {
-        return ADMINISTRATOR_HASH_MAP.remove(id) != null;
+    public Administrator updateAdministrator(Administrator administrator) {
+        return adminRepository.updateAdministrator(administrator);
+    }
+
+    @Override
+    public boolean deleteAdministrator(long administratorId) {
+        long deletedId = adminRepository.deleteAdministratorById(administratorId);
+        return administratorId == deletedId;
     }
 }
