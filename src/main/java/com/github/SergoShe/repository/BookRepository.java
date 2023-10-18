@@ -8,9 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book,Long> {
-
+public interface BookRepository extends JpaRepository<Book, Long> {
+/*
     @Modifying
-    @Query(value = "UPDATE book SET status_id = 5 WHERE book_id = :bookId", nativeQuery = true)
-    void setServiceStatus(@Param("bookId") long bookId);
+    @Query(value = "UPDATE book SET status_id = :statusId WHERE book_id = :bookId", nativeQuery = true)
+    void setServiceStatus(@Param("statusId") int statusId, @Param("bookId") long bookId);
+
+ */
 }

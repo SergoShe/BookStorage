@@ -44,11 +44,10 @@ public class BookController {
     }
 
     //Изменить информацию о книге
-    @PutMapping("/{id}")
+    @PutMapping("/")
     public ResponseEntity<Book> update(@RequestBody Book book) {
         Book updatedBook = bookService.update(book);
         return new ResponseEntity<>(updatedBook,HttpStatus.OK);
-
     }
 
     //Отправить книгу в обслуживание
